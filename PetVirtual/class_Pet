@@ -1,0 +1,56 @@
+import time
+
+class PetVirtual:
+    def __init__(self, nome):
+        self.nome = nome
+        self.fome = 100
+        self.sono = 100
+        self.ticks_com_fome = 0
+        self.ticks_com_sono = 0
+        self.vivo = True
+
+    def status(self):
+        if self.vivo == True:
+            print(f"""{self.nome}
+    Fome -> {self.fome}
+    Sono -> {self.sono}""")
+        else:
+            print("Status: Morto")
+        time.sleep(1)
+
+    def comer(self):
+        if self.vivo == True:
+            if self.fome < 100:
+                self.fome = min(self.fome + 20, 100)
+                print("HMM DELICIOUS")
+            else:
+                print("JA COMI JA")
+        else:
+            print("Seu pet está morto")
+        time.sleep(1)
+
+    def dormir(self):
+        if self.vivo == True:
+            if self.sono < 100:
+                self.sono = min(self.sono + 30, 100)
+                print("VOU DORMIR")
+            else:
+                print("TO DORMIDO JA")
+        else:
+            print("Seu pet morreu")
+        time.sleep(1)
+
+    def passar_tempo(self):
+        while self.vivo:
+            self.fome = max(self.fome - 5, 0)
+            self.sono = max(self.sono - 50, 0)
+            if self.fome <= 30:
+                print("TO COM FOMEEEEEEEEEEE")
+            if self.sono <= 30:
+                print("TO COM SONOOOOOOOOOOO")
+            self.ticks_com_fome = self.ticks_com_fome + 1 if self.fome == 0 else 0
+            self.ticks_com_sono = self.ticks_com_sono + 1 if self.sono == 0 else 0
+            self.vivo = False if self.ticks_com_fome == 3 or self.ticks_com_sono == 3 else True
+            if self.vivo == False:
+                print("Seu pet morreu")
+            time.sleep(3)
