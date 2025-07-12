@@ -1,0 +1,27 @@
+import class1 as tm
+import threading
+
+pet = tm.PetVirtual("Dinda")
+
+fome_thread = threading.Thread(target=pet.passar_tempo)
+fome_thread.start()
+while pet.vivo == True:
+    menu = input("""==MENU==
+[1] - Ver status
+[2] - Comer
+[3] - Dormir
+[0] - Sair
+""")
+    if pet.vivo == False:
+        break
+    if menu == "1":
+        pet.status()
+    elif menu == "2":
+        pet.comer()
+    elif menu == "3":
+        pet.dormir()
+    elif menu == "0":
+        break
+    else:
+        raise ValueError("Insira um valor válido")
+    
